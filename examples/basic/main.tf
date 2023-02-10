@@ -1,4 +1,4 @@
-module "MOD_SHORTNAME" {
+module "elasticache-parameter-group" {
   source = "../.."
 
   organization = var.organization
