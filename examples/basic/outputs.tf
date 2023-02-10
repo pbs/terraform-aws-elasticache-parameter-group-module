@@ -1,4 +1,4 @@
-output "hello_world" {
-  description = "Hello World"
-  value       = module.elasticache-parameter-group.hello_world
+output "name" {
+  description = "Name of the elasticache parameter group"
+  value       = module.elasticache_parameter_group.name
 }

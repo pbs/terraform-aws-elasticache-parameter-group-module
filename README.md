@@ -78,22 +78,19 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_default_tags.common_tags](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/default_tags) | data source |
+| [aws_elasticache_parameter_group.parameter_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_parameter_group) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_environment"></a> [environment](#input\_environment) | Environment (sharedtools, dev, staging, qa, prod) | `string` | n/a | yes |
-| <a name="input_organization"></a> [organization](#input\_organization) | Organization using this module. Used to prefix tags so that they are easily identified as being from your organization | `string` | n/a | yes |
-| <a name="input_product"></a> [product](#input\_product) | Tag used to group resources according to product | `string` | n/a | yes |
-| <a name="input_repo"></a> [repo](#input\_repo) | Tag used to point to the repo using this module | `string` | n/a | yes |
-| <a name="input_name"></a> [name](#input\_name) | Name of the elasticache parameter group module. If null, will default to product. | `string` | `null` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Extra tags | `map(string)` | `{}` | no |
+| <a name="input_name"></a> [name](#input\_name) | Name of the elasticache parameter group. | `string` | n/a | yes |
+| <a name="input_engine"></a> [engine](#input\_engine) | Engine of the elasticache parameter group. | `string` | `"redis"` | no |
+| <a name="input_parameter_group_version"></a> [parameter\_group\_version](#input\_parameter\_group\_version) | The version being used for the application when creating a parameter group. | `string` | `"7"` | no |
+| <a name="input_parameters"></a> [parameters](#input\_parameters) | Additional parameters that will be added to parameter group. | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_hello_world"></a> [hello\_world](#output\_hello\_world) | Hello world output |
-| <a name="output_tags"></a> [tags](#output\_tags) | The tags |
+| <a name="output_name"></a> [name](#output\_name) | Parameter group name |
