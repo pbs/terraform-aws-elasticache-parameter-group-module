@@ -16,20 +16,17 @@ More information can be found on these install methods and more in [the document
 
 ## Usage
 
-<!-- TODO -->
-This should be a basic description of what this module does.
-Fill this out before completing usage of this template.
-<!-- TODO -->
+This module creates an ElastiCache parameter group to be used in integration with an ElastiCache cluster.
+
+See the [ElastiCache Redis Standalone Module](https://github.com/pbs/terraform-aws-elasticache-redis-standalone-module) and [ElastiCache Memcached Module](https://github.com/pbs/terraform-aws-elasticache-memcached-module) for modules to provision a cluster that uses this parameter group.
 
 Integrate this module like so:
 
 ```hcl
-module "elasticache-parameter-group" {
+module "elasticache_parameter_group" {
   source = "github.com/pbs/terraform-aws-elasticache-parameter-group-module?ref=x.y.z"
 
-  <!-- TODO -->
-  Show some examples of valid values for required parameters.
-  <!-- TODO -->
+  name = "example"
 
   # Tagging Parameters
   organization = var.organization
