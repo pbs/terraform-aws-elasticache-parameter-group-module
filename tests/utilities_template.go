@@ -22,6 +22,6 @@ func testTemplate(t *testing.T, variant string) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	output := terraform.Output(t, terraformOptions, "hello_world")
-	assert.Equal(t, "Hello, World!", output)
+	name := terraform.Output(t, terraformOptions, "name")
+	assert.Equal(t, "example-tf-elasticache-parameter-group-basic", name)
 }

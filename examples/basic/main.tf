@@ -1,8 +1,5 @@
-module "MOD_SHORTNAME" {
+module "elasticache_parameter_group" {
   source = "../.."
 
-  organization = var.organization
-  environment  = var.environment
-  product      = var.product
-  repo         = var.repo
+  name = var.name
 }

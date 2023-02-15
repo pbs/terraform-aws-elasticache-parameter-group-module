@@ -1,24 +1,93 @@
-# TF Module Template
+# PBS TF ElastiCache Parameter Group Module
 
-Version: `0.0.8`
+## Installation
 
-This is the standard template for Terraform modules. This contains some useful scaffolding to create modules that are:
+### Using the Repo Source
 
-1. Well documented
-2. Tested
-3. Shareable
+Use this URL for the source of the module. See the usage examples below for more details.
 
-Repos created off of this template will follow the naming convention `terraform-aws-MOD_NAME-module`, replacing MOD_NAME with the name of your module.
+```hcl
+github.com/pbs/terraform-aws-elasticache-parameter-group-module?ref=x.y.z
+```
 
-## TODO
+### Alternative Installation Methods
 
-After creating a repo from this template, your responsibilities are as follows:
+More information can be found on these install methods and more in [the documentation here](./docs/general/install).
 
-- [ ] Run the [wizard.sh](/scripts/wizard.sh) script (`./scripts/wizard.sh`) to populate the boilerplate placeholders with their appropriate values. This includes the proper name of the module and a standardized slug. These values are automatically populated from the name of the repository, but can be adjusted at your discretion.
-- [ ] Update [main.tf](/main.tf), [outputs.tf](/outputs.tf), [required.tf](/required.tf) and [optional.tf](/optional.tf) with the configuration for your module (delete files you don't need).
-- [ ] Double check that the [terraform.tf](/terraform.tf) and [.tool-versions](/.tool-versions) files have the appropriate versions for resources you are going to use. For major updates, consider updating this template!
-- [ ] Create some [examples](/examples) of your module being used. Remember that the examples there will be used for tests that run in real AWS accounts!
-- [ ] Create some [tests](/tests) to validate the proper configuration of your module. See instructions [here](/docs/general/dev).
-- [ ] Update [README-HEADER.md](/README-HEADER.md) based on the properties of your module. This file will replace the README.md on commit if you follow the instructions [here](/docs/general/dev).
-- [ ] Add the git hooks listed under ## Hooks [here](/docs/general/dev). These scripts run as part of the CI, but your development experience will be smoother if you have them running locally as well.
-- [ ] Add this template as a remote (`git remote add template git@github.com:pbs/terraform-aws-template-v2.git`). This can be used to allow you to merge back any changes you like from the template into your module.
+## Usage
+
+This module creates an ElastiCache parameter group to be used in integration with an ElastiCache cluster.
+
+See the [ElastiCache Redis Standalone Module](https://github.com/pbs/terraform-aws-elasticache-redis-standalone-module) and [ElastiCache Memcached Module](https://github.com/pbs/terraform-aws-elasticache-memcached-module) for modules to provision a cluster that uses this parameter group.
+
+Integrate this module like so:
+
+```hcl
+module "elasticache_parameter_group" {
+  source = "github.com/pbs/terraform-aws-elasticache-parameter-group-module?ref=x.y.z"
+
+  name = "example"
+
+  # Tagging Parameters
+  organization = var.organization
+  environment  = var.environment
+  product      = var.product
+  repo         = var.repo
+
+  # Optional Parameters
+}
+```
+
+## Adding This Version of the Module
+
+If this repo is added as a subtree, then the version of the module should be close to the version shown here:
+
+`x.y.z`
+
+Note, however that subtrees can be altered as desired within repositories.
+
+Further documentation on usage can be found [here](./docs).
+
+Below is automatically generated documentation on this Terraform module using [terraform-docs][terraform-docs]
+
+---
+
+[terraform-docs]: https://github.com/terraform-docs/terraform-docs
+
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.5.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.35.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_elasticache_parameter_group.parameter_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_parameter_group) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_name"></a> [name](#input\_name) | Name of the elasticache parameter group. | `string` | n/a | yes |
+| <a name="input_engine"></a> [engine](#input\_engine) | Engine of the elasticache parameter group. | `string` | `"redis"` | no |
+| <a name="input_parameter_group_version"></a> [parameter\_group\_version](#input\_parameter\_group\_version) | The version being used for the application when creating a parameter group. | `string` | `"7"` | no |
+| <a name="input_parameters"></a> [parameters](#input\_parameters) | Additional parameters that will be added to parameter group. | <pre>list(object({<br>    name  = string<br>    value = string<br>  }))</pre> | `[]` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_name"></a> [name](#output\_name) | Parameter group name |

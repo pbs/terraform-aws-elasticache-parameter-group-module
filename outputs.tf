@@ -1,9 +1,4 @@
-output "hello_world" {
-  description = "Hello world output"
-  value       = "Hello, World!"
-}
-
-output "tags" {
-  description = "The tags"
-  value       = local.tags
+output "name" {
+  description = "Parameter group name"
+  value       = aws_elasticache_parameter_group.parameter_group.name
 }
